@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peináo — Process — Aaria Chandwani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;900&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/peinao-process.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+    <a href="index.html" class="nav-wordmark">AARIA CHANDWANI</a>
+    <ul class="nav-links">
+      <li><a href="interests.html">Interests</a></li>
+      <li><a href="contact.html">Contact Me</a></li>
+    </ul>
+  </nav>
+
+  <a class="back-link" href="projects.html">← Back to Projects</a>
+
+  <header class="page-heading process-heading">
+    <h1>Peináo — Process</h1>
+  </header>
+
+  <main class="process-content">
+
+    <section class="process-block process-overview">
+      <span class="section-label">Overview</span>
+      <p class="process-paragraph process-overview-text">When my friends and I would go out to eat, we never went to a Thai place, because we didn't know if they could accommodate peanut allergies. We always picked from the same narrow list of restaurants we already trusted, and I no longer wanted to do that. Peináo helps people with food allergies figure out which restaurants are actually safe for them, not just the small handful they already know are safe. It started as a small tool for Claremont Village and grew into a project covering St. Marks Place in New York, combining menu classification, allergen risk scoring, and Google reviews into one simple score per restaurant.</p>
+    </section>
+
+    <section class="process-row">
+      <div class="process-text">
+        <span class="section-label">Prototype 1: Claremont Village</span>
+        <h3 class="process-subheading">What I built</h3>
+        <ul class="dashed-list">
+          <li>Manually downloaded menus from restaurant websites and cleaned up the formatting so the LLM could parse them accurately</li>
+          <li>Used the Google Maps API to pull in restaurant and location data</li>
+          <li>Wrapped everything into a Streamlit app for a working demo</li>
+        </ul>
+        <h3 class="process-subheading">Biggest challenge</h3>
+        <p class="process-paragraph">Data collection. Every restaurant formats its menu differently (PDFs, images, inconsistent naming, missing ingredients), so getting clean, usable data was harder than the classification itself. Manually collecting the data was unrealistic.</p>
+      </div>
+      <div class="process-image process-image--one">
+        <img src="assets/projects/prototype-1.png" alt="Prototype 1 — Claremont Village menu analyzer map" />
+      </div>
+    </section>
+
+    <section class="process-row">
+      <div class="process-text">
+        <span class="section-label">Prototype 2: Starting Over with a Clearer Vision</span>
+        <p class="process-paragraph">Once I understood what the tool actually needed to do well, I rebuilt it from scratch, this time scoped to every restaurant on St. Marks Place in the East Village.</p>
+        <h3 class="process-subheading">Major tasks</h3>
+        <ul class="dashed-list">
+          <li>Collect data from every restaurant on St. Marks Place</li>
+          <li>Build a classifier that reads menus and scores allergen risk per item</li>
+          <li>Combine allergen safety with Google review scores into one blended rating</li>
+          <li>Build a cleaner user interface</li>
+        </ul>
+        <h3 class="process-subheading">1. Sourcing Data</h3>
+        <p class="process-paragraph">Created a Claude Agent that used skills with very tailored instructions to go and source the menus. In order, my agent would check official restaurant websites, then DoorDash and Uber Eats, then Yelp, then Google Maps images. Instead of asking the LLM one broad, unreliable question, I narrowed the prompt so each menu item returns a structured, consistent answer — far more reliable, and much easier to build a UI around.</p>
+        <h3 class="process-subheading">2. Scoring</h3>
+        <p class="process-paragraph">Each restaurant ends up with two scores: a peanut-safety score and a gluten-safety score, each blended with its Google review rating. Keeping it to two scores meant both could display side by side without cluttering the card — e.g. 7/10 (peanut) · 8/10 (gluten).</p>
+        <h3 class="process-subheading">3. UI Implications</h3>
+        <p class="process-paragraph">With only two allergen categories, the interface stayed simple. Instead of a long dropdown of restrictions, every restaurant card can show both scores at once, or let the user toggle between Peanut, Gluten, or Both.</p>
+      </div>
+      <div class="process-image process-image--two">
+        <img src="assets/projects/prototype-2.png" alt="Prototype 2 — St. Marks Place prototype screenshot" />
+        <img src="assets/projects/prototype-3.png" alt="Screenshot of Prototype 2 — menu and allergen flag card" />
+      </div>
+    </section>
+
+    <section class="process-block">
+      <span class="section-label">Biggest Challenges</span>
+      <ol class="numbered-list">
+        <li>Data collection and scraping. Even with a clearer plan, getting consistent, structured data out of dozens of different restaurant menus was still the hardest part of the project.</li>
+        <li>Tool exploration. I spent time exploring Zo Computer and a few other tools before realizing I was going down a rabbit hole, and had to consciously pull myself back to the core build.</li>
+        <li>Lovable vs. Figma. Deciding between prototyping the UI in Figma versus building it directly in Lovable took some back and forth before I landed on the right workflow, since I had never done design before.</li>
+      </ol>
+    </section>
+
+    <section class="process-block">
+      <span class="section-label">Lessons Learned</span>
+      <ul class="dashed-list">
+        <li>Understanding what the AI is doing is key.</li>
+        <li>Data quality is the real bottleneck.</li>
+        <li>It's worth rebuilding from scratch.</li>
+      </ul>
+    </section>
+
+    <section class="process-block">
+      <span class="section-label">Future Improvements (If This Were Built at Scale)</span>
+      <ol class="numbered-list">
+        <li>Accurate allergen information: Cross-check classifications against official restaurant health inspection data from the city.</li>
+        <li>Better menu sourcing: Get direct access to a DoorDash API for more complete and up-to-date menu data, rather than relying on manual collection.</li>
+        <li>User feedback: Use this to iteratively improve the site; when someone scores a restaurant for a given restriction, the app automatically adjusts that restaurant's scores.</li>
+      </ol>
+    </section>
+
+    <section class="process-block">
+      <span class="section-label">Project Evolution</span>
+      <p class="process-paragraph">This project started as a tool for Claremont Village restaurants and has since expanded to cover a real New York City neighborhood (St. Marks Place), reflecting a shift from a class project to something built for a live, denser food scene.</p>
+    </section>
+
+  </main>
+
+</body>
+</html>

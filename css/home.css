@@ -1,0 +1,113 @@
+/* No-scroll, one-page layout: the page is exactly 100vh tall, the nav takes
+   its natural height, and the gallery viewport fills whatever is left.
+   The gallery itself gets an explicit px width/height from home.js, sized
+   to fit that leftover space (not just the page width), so nothing
+   overflows and the page never scrolls. */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  flex-shrink: 0;
+}
+
+.gallery-viewport {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery {
+  position: relative;
+  overflow: hidden;
+}
+
+.tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.tile-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.tile.flipped .tile-inner {
+  transform: rotateY(180deg);
+}
+
+.tile-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(33, 28, 24, 0.14);
+}
+
+.tile-face img {
+  width: 100%;
+  height: 100%;
+  /* Fixed Figma-sized boxes now, so object-fit: cover gives a clean, sharp
+     edge-to-edge crop — no letterboxing, no padding, no rounded corners. */
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.tile-back {
+  background: var(--color-ink);
+  color: #fff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  gap: 8px;
+}
+
+.tile-back .tile-location {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tile-back .tile-caption {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+}
+
+.tile-number {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile { transition: none !important; }
+}

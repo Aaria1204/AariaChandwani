@@ -1,0 +1,102 @@
+:root {
+  --color-bg: #F7F3EC;
+  --color-surface: #FFFFFF;
+  --color-ink: #211C18;
+  --color-muted: #8C8175;
+  --color-accent: #B5502F;
+  --color-line: #DDD6CB;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---------- Nav ---------- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 64px;
+  background: #fff;
+  border-bottom: 1px solid var(--color-line);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--color-ink);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover {
+  color: var(--color-accent);
+}
+
+.nav-wordmark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 52px);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+/* ---------- Page heading (About / Projects / Interests / Contact) ---------- */
+
+.page-heading {
+  padding: 48px 64px 8px;
+}
+
+.page-heading h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 48px;
+  color: var(--color-ink);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 40px 64px 0;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .nav { padding: 16px 24px; }
+  .nav-links { gap: 20px; }
+  .page-heading, .back-link { padding-left: 24px; padding-right: 24px; }
+}

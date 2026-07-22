@@ -1,0 +1,125 @@
+/* ---------- About page ---------- */
+
+.about-bio {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+  padding: 24px 64px 64px;
+}
+
+.about-bio-text {
+  flex: 1 1 auto;
+  max-width: 900px;
+}
+
+.about-bio-text p {
+  color: var(--color-muted);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.about-bio-text p:last-child {
+  margin-bottom: 0;
+}
+
+.about-illustration {
+  position: relative;
+  flex: 0 0 auto;
+  display: block;
+  text-decoration: none;
+}
+
+.about-illustration img {
+  display: block;
+  width: 360px;
+  height: auto;
+}
+
+.resume-tag {
+  position: absolute;
+  top: 24%;
+  left: 65%;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+/* ---------- Credentials ---------- */
+
+.credentials {
+  background: var(--color-surface);
+  padding: 24px 64px 96px;
+}
+
+.credential-row {
+  display: flex;
+  gap: 40px;
+  padding: 24px 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.credential-row:first-child {
+  border-top: none;
+}
+
+.credential-label {
+  flex: 0 0 160px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.credential-content {
+  flex: 1;
+}
+
+.credential-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin-bottom: 4px;
+}
+
+.credential-content p:last-child {
+  margin-bottom: 0;
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skill-pills li {
+  border: 1px solid var(--color-line);
+  border-radius: 100px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--color-ink);
+}
+
+@media (max-width: 900px) {
+  .about-bio {
+    flex-direction: column;
+  }
+  .credential-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 700px) {
+  .about-bio,
+  .credentials {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

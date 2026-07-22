@@ -1,0 +1,174 @@
+/* ---------- Peináo — Process page ---------- */
+
+.process-heading h1 {
+  font-size: 44px;
+}
+
+.process-content {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px 64px 96px;
+}
+
+.process-content > *:not(:first-child) {
+  border-top: 1px solid var(--color-line);
+}
+
+.process-block,
+.process-row {
+  padding: 40px 0;
+}
+
+.section-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+}
+
+.process-paragraph {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.process-overview-text {
+  max-width: 900px;
+}
+
+.process-subheading {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-ink);
+  margin: 20px 0 10px;
+}
+
+.process-subheading:first-of-type {
+  margin-top: 0;
+}
+
+.dashed-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+}
+
+.dashed-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.dashed-list li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--color-ink);
+}
+
+.numbered-list {
+  list-style: none;
+  counter-reset: process-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  max-width: 900px;
+}
+
+.numbered-list li {
+  position: relative;
+  padding-left: 32px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.numbered-list li::before {
+  counter-increment: process-counter;
+  content: counter(process-counter) ".";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* ---------- Two-column rows (Prototype 1 / Prototype 2) ---------- */
+
+.process-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+}
+
+.process-text {
+  flex: 0 0 674px;
+  width: 674px;
+}
+
+.process-image {
+  flex: 0 0 560px;
+  width: 560px;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.process-image--one {
+  height: 318px;
+}
+
+.process-image--one img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.process-image--two {
+  height: 731px;
+  display: flex;
+  flex-direction: column;
+}
+
+.process-image--two img {
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.process-image--two img:first-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+@media (max-width: 1320px) {
+  .process-row {
+    flex-wrap: wrap;
+  }
+  .process-text,
+  .process-image {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+  .process-image--one,
+  .process-image--two {
+    height: auto;
+  }
+  .process-image--one img {
+    height: 318px;
+  }
+  .process-image--two img {
+    height: 366px;
+  }
+}
