@@ -7,7 +7,6 @@ const FIGMA_CANVAS_H = 900;
 
 const TILES = [
   { n: "01", img: "assets/home/photo-01.png", loc: "Myka, NY", cap: "Froyo obsession!!", figX: 47, figY: 41, figW: 220, figH: 208 },
-  { n: "02", img: "assets/home/photo-02.png", loc: "iPhone", cap: "An app I open way too often (Whoop)", figX: 317, figY: 46, figW: 220, figH: 260 },
   { n: "03", img: "assets/home/photo-03.png", loc: "Malibu, CA", cap: "My family loves to hike", figX: 720, figY: 53, figW: 442, figH: 260 },
   { n: "04", img: "assets/home/photo-04.png", loc: "Claremont, CA", cap: "Biannual free coffee for my friends", figX: 1197, figY: 235, figW: 159, figH: 275 },
   { n: "05", img: "assets/home/photo-05.png", loc: null, cap: "Me!", figX: 100, figY: 289, figW: 167, figH: 277 },
