@@ -111,3 +111,52 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .tile { transition: none !important; }
 }
+
+/* ---------- Mobile: static scrollable grid instead of the floating
+   physics canvas. The canvas is designed against a 1440x900 desktop
+   frame and doesn't have room to breathe on a phone-width viewport (or a
+   short phone-landscape viewport), so home.js skips the animation
+   entirely in either case and just appends tiles in document order;
+   this CSS lays them out as a simple two-column grid that scrolls
+   normally with the page. Keep this query in sync with MOBILE_QUERY in
+   js/home.js. */
+@media (max-width: 700px), (max-height: 500px) {
+  html, body {
+    height: auto;
+    overflow: visible;
+  }
+
+  body {
+    display: block;
+  }
+
+  .gallery-viewport {
+    display: block;
+    height: auto;
+    overflow: visible;
+    padding: 20px;
+  }
+
+  .gallery {
+    position: static;
+    width: 100% !important;
+    height: auto !important;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tile {
+    position: relative !important;
+    width: 100% !important;
+    height: 0 !important;
+    padding-bottom: 118%;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .tile-inner {
+    position: absolute;
+    inset: 0;
+  }
+}

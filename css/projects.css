@@ -126,3 +126,21 @@
     flex: 1 1 100%;
   }
 }
+
+@media (max-width: 700px) {
+  .project-list {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .project-row {
+    gap: 24px;
+    padding: 32px 0;
+  }
+  .project-title {
+    font-size: 28px;
+  }
+  .project-image {
+    height: auto;
+    aspect-ratio: 600 / 342;
+  }
+}

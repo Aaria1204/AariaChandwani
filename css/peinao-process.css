@@ -172,3 +172,19 @@
     height: 366px;
   }
 }
+
+@media (max-width: 700px) {
+  .process-content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .process-heading h1 {
+    font-size: 32px;
+  }
+  .process-image--one img {
+    height: 220px;
+  }
+  .process-image--two img {
+    height: 260px;
+  }
+}

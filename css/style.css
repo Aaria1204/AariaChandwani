@@ -96,7 +96,26 @@ img {
 }
 
 @media (max-width: 700px) {
-  .nav { padding: 16px 24px; }
-  .nav-links { gap: 20px; }
+  .nav {
+    flex-direction: column;
+    justify-content: center;
+    padding: 14px 20px;
+    gap: 8px;
+  }
+  .nav-wordmark {
+    order: -1;
+    font-size: 22px;
+  }
+  .nav-links {
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav-links a { font-size: 12px; }
   .page-heading, .back-link { padding-left: 24px; padding-right: 24px; }
+  .page-heading h1 { font-size: 34px; }
+}
+
+@media (max-width: 380px) {
+  .nav-wordmark { font-size: 18px; }
 }

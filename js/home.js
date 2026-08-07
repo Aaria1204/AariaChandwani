@@ -23,31 +23,77 @@ const SPEED = 0.22;        // px per frame, constant drift speed (slow + calm)
 const SEPARATION_EASE = 0.12; // fraction of overlap corrected per frame (higher = snappier bump, lower = softer)
 const MIN_SCALE = 0.4;     // floor on how far the layout can shrink on narrow viewports
 
+// Keep in sync with the matching @media rule in css/home.css.
+const MOBILE_QUERY = "(max-width: 700px), (max-height: 500px)";
+const isMobileLayout = () => window.matchMedia(MOBILE_QUERY).matches;
+
+function buildTileEl(data) {
+  const el = document.createElement("div");
+  el.className = "tile";
+
+  const locHtml = data.loc
+    ? `<div class="tile-location">\u{1F4CD} ${data.loc}</div>`
+    : "";
+
+  el.innerHTML = `
+    <div class="tile-inner">
+      <div class="tile-face tile-front">
+        <span class="tile-number">${data.n}</span>
+        <img src="${data.img}" alt="${data.loc || ''} ${data.cap}" loading="lazy" decoding="async" />
+      </div>
+      <div class="tile-face tile-back">
+        ${locHtml}
+        <div class="tile-caption">${data.cap}</div>
+      </div>
+    </div>
+  `;
+
+  return el;
+}
+
 function initGallery() {
   const gallery = document.getElementById("gallery");
   if (!gallery) return;
 
+  const startedMobile = isMobileLayout();
+
+  if (startedMobile) {
+    initMobileGallery(gallery);
+  } else {
+    initDesktopGallery(gallery);
+  }
+
+  // Phones and small tablets can cross the mobile/desktop breakpoint on
+  // rotation. The two layouts are structurally different (static grid vs.
+  // absolutely-positioned physics canvas), so rather than trying to tear
+  // down and rebuild live state, just reload once if the breakpoint is
+  // actually crossed.
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (isMobileLayout() !== startedMobile) {
+        window.location.reload();
+      }
+    }, 200);
+  });
+}
+
+// ---------- Mobile: static grid, no animation ----------
+// Tap (or click) a card to flip it and reveal the caption, since there's
+// no hover on touch devices.
+function initMobileGallery(gallery) {
+  TILES.forEach((data) => {
+    const el = buildTileEl(data);
+    gallery.appendChild(el);
+    el.addEventListener("click", () => el.classList.toggle("flipped"));
+  });
+}
+
+// ---------- Desktop: drifting physics canvas ----------
+function initDesktopGallery(gallery) {
   const tiles = TILES.map((data) => {
-    const el = document.createElement("div");
-    el.className = "tile";
-
-    const locHtml = data.loc
-      ? `<div class="tile-location">\u{1F4CD} ${data.loc}</div>`
-      : "";
-
-    el.innerHTML = `
-      <div class="tile-inner">
-        <div class="tile-face tile-front">
-          <span class="tile-number">${data.n}</span>
-          <img src="${data.img}" alt="${data.loc || ''} ${data.cap}" loading="lazy" decoding="async" />
-        </div>
-        <div class="tile-face tile-back">
-          ${locHtml}
-          <div class="tile-caption">${data.cap}</div>
-        </div>
-      </div>
-    `;
-
+    const el = buildTileEl(data);
     gallery.appendChild(el);
 
     el.addEventListener("mouseenter", () => el.classList.add("flipped"));
